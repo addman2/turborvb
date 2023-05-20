@@ -9,6 +9,8 @@ macro(SET_ONEAPI_FORTRAN_COMPILER)
   message( STATUS "Using Intel oneAPI Compiler" )
 
   add_fortran_flag_if_avail( "-fpp"   "Intel LLVM Fortran compiler does not supports C preprocessor" )
+  add_fortran_flag_if_avail( "-mcmodel=large" )
+  add_fortran_flag_if_avail( "-noauto" )
 
   set(AGRESSIVE_F "-Ofast")
   set(PASIVE_F "-O1")
@@ -17,10 +19,10 @@ macro(SET_ONEAPI_FORTRAN_COMPILER)
   endif()
 
   add_fortran_flag_if_avail( "-g" )
+  add_target_link_flag( "-g" )
 
-  if(OpenMP_FOUND)
+  if(OpenMP_FOUND AND OFF)
 	    add_fortran_flag_if_avail( "-qopenmp" )
-	    add_c_flag_if_avail( "-qopenmp" )
       add_target_link_flag( "-qopenmp" )
   endif()
 
@@ -69,6 +71,10 @@ macro(SET_ONEAPI_C_COMPILER)
 
   list( APPEND PPDIRECTIVES "__FFTW" )
   list( APPEND PPDIRECTIVES "__USE_INTERNAL_FFTW" )
+
+  if(OpenMP_FOUND)
+	    add_c_flag_if_avail( "-qopenmp" )
+  endif()
 
 endmacro()
 

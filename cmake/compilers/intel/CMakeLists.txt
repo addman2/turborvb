@@ -12,10 +12,9 @@ macro(SET_INTEL_FORTRAN_COMPILER)
   set(PASIVE_F "-O1")
 
   add_fortran_flag_if_avail( "-fpp"   "Intel (Legacy) Fortran compiler does not supports c preprocessor" )
-  if(OpenMP_FOUND)
-	    add_fortran_flag_if_avail( "-qopenmp" )
-	    add_c_flag_if_avail( "-qopenmp" )
+  if(OpenMP_FOUND OR TRUE)
       add_target_link_flag( "-qopenmp" )
+	    add_fortran_flag_if_avail( "-qopenmp" )
   endif()
 
   add_fortran_flag_if_avail( "-g" )
@@ -75,6 +74,10 @@ macro(SET_INTEL_C_COMPILER)
 
   list( APPEND PPDIRECTIVES "__FFTW" )
   list( APPEND PPDIRECTIVES "__USE_INTERNAL_FFTW" )
+
+  if(OpenMP_FOUND)
+	    add_c_flag_if_avail( "-qopenmp" )
+  endif()
 
 endmacro()
 

@@ -21,7 +21,7 @@ macro(SET_ONEAPI_FORTRAN_COMPILER)
   add_fortran_flag_if_avail( "-g" )
   add_target_link_flag( "-g" )
 
-  if(OpenMP_FOUND AND OFF)
+  if(OpenMP_FOUND)
 	    add_fortran_flag_if_avail( "-qopenmp" )
       add_target_link_flag( "-qopenmp" )
   endif()

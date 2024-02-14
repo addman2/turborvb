@@ -15,6 +15,7 @@ macro(SET_AMD_FORTRAN_COMPILER)
   endif()
 
   list( APPEND PPDIRECTIVES "__AMD" )
+  list( APPEND PPDIRECTIVES "_FIXBUG_ZDOTC" )
 
   add_fortran_flag_if_avail( "-cpp"                    "GNU Fortran compiler does not supports c preprocessor" )
   add_fortran_flag_if_avail( "-g" )
@@ -22,15 +23,15 @@ macro(SET_AMD_FORTRAN_COMPILER)
   add_fortran_flag_if_avail( "-funroll-loops" )
 
   if( ${EXT_OPT} )
-    add_fortran_flag_if_avail( "-fvectorize" )
-    add_fortran_flag_if_avail( "-function-specialize" )
-    add_fortran_flag_if_avail( "-finline-aggressive" )
-    add_fortran_flag_if_avail( "-ffast-math" )
-    add_fortran_flag_if_avail( "-freciprocal-math" )
-    add_fortran_flag_if_avail( "-reduce-array-computation=3" )
-    add_fortran_flag_if_avail( "-fprofile-instr-generate" )
-    add_fortran_flag_if_avail( "-fprofile-instr-use" )
-    add_fortran_flag_if_avail( "-fnt-store" )
+    #add_fortran_flag_if_avail( "-fvectorize" )
+    #add_fortran_flag_if_avail( "-function-specialize" )
+    #add_fortran_flag_if_avail( "-finline-aggressive" )
+    #add_fortran_flag_if_avail( "-ffast-math" )
+    #add_fortran_flag_if_avail( "-freciprocal-math" )
+    #add_fortran_flag_if_avail( "-reduce-array-computation=3" )
+    #add_fortran_flag_if_avail( "-fprofile-instr-generate" )
+    #add_fortran_flag_if_avail( "-fprofile-instr-use" )
+    #add_fortran_flag_if_avail( "-fnt-store" )
   endif()
 
   add_fortran_flag_if_avail( "-openmp" )
@@ -112,12 +113,12 @@ macro( PREPARE_AGRESSIVE_AMD )
       ratiovar.f90
       scratchdet.f90
       scalevect.f90
-      jastrow_exp.f90
-      jastrowgrad_exp.f90
-      jastrowgrad_exp_pbc.f90
-      up2bodypsi_pbc_exp.f90
-      upwinv.f90
-      upwinvp.f90
+      #jastrow_exp.f90
+      #jastrowgrad_exp.f90
+      #jastrowgrad_exp_pbc.f90
+      #up2bodypsi_pbc_exp.f90
+      #upwinv.f90
+      #upwinvp.f90
       #jastrow_ei.f90
       #jastrow_ee_exp.f90
       conjginv_prep.f90
